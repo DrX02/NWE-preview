@@ -1,66 +1,674 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WA NIYON EVENT - Accueil</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="WA NIYON EVENT - Votre partenaire pour l'hébergement, les événements et le tourisme au Bénin. Guest houses de luxe, salles de fête et circuits touristiques.">
+  <meta name="keywords"
+    content="Bénin, tourisme, guest house, salle de fête, événement, mariage, conférence, hébergement, Cotonou">
+  <meta name="author" content="WA NIYON EVENT">
+  <title>WA NIYON EVENT - Accueil | Hébergement & Événements au Bénin</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    /* Animation personnalisée */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .animate-delay-100 {
+      animation-delay: 100ms;
+    }
+
+    .animate-delay-200 {
+      animation-delay: 200ms;
+    }
+
+    .animate-delay-300 {
+      animation-delay: 300ms;
+    }
+
+    /* Styles personnalisés */
+    .text-shadow {
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .gradient-overlay {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .clip-polygon {
+      clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    }
+
+    /* Swiper custom */
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background: white;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+      background: #ffd700;
+      transform: scale(1.2);
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #ffd700;
+      background: rgba(0, 0, 0, 0.3);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background: rgba(0, 0, 0, 0.5);
+      transform: scale(1.1);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #312682;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #1e164d;
+    }
+
+    /* Custom colors */
+    .bg-primary {
+      background-color: #312682;
+    }
+
+    .bg-secondary {
+      background-color: #c23b49;
+    }
+
+    .bg-accent {
+      background-color: #ffd700;
+    }
+
+    .text-primary {
+      color: #312682;
+    }
+
+    .text-secondary {
+      color: #c23b49;
+    }
+
+    .text-accent {
+      color: #ffd700;
+    }
+
+    .border-primary {
+      border-color: #312682;
+    }
+
+    .border-secondary {
+      border-color: #c23b49;
+    }
+
+    .border-accent {
+      border-color: #ffd700;
+    }
+
+    /* Hover effects */
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+
+    .hover-scale:hover {
+      transform: scale(1.03);
+    }
+
+    .hover-underline {
+      position: relative;
+    }
+
+    .hover-underline::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #ffd700;
+      transition: width 0.3s ease;
+    }
+
+    .hover-underline:hover::after {
+      width: 100%;
+    }
+
+    /* Loading animation */
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
 </head>
-<body class="bg-gray-100">
-    <!-- Header -->
-    <header class="bg-green-700 text-white">
-        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
-            <h1 class="text-3xl font-bold">WA NIYON EVENT</h1>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="index.html" class="hover:text-yellow-300">Accueil</a></li>
-                    <li><a href="guest-houses.html" class="hover:text-yellow-300">Guest Houses</a></li>
-                    <li><a href="event-halls.html" class="hover:text-yellow-300">Salles de Fête</a></li>
-                    <li><a href="tourism.html" class="hover:text-yellow-300">Tourisme</a></li>
-                    <li><a href="contact.html" class="hover:text-yellow-300">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-<!-- Section Guest Houses -->
-<section class="container mx-auto px-4 py-12">
-    <h3 class="text-3xl font-bold mb-8">Nos Guest Houses</h3>
-    
-    <!-- Filtres -->
-    <div class="mb-6">
-        <select title="option" class="border p-2 rounded">
-            <option>Trier par prix</option>
-            <option>Moins de 50€/nuit</option>
-            <option>50€ - 100€/nuit</option>
-        </select>
+<body class="bg-gray-50 font-sans antialiased">
+  <!-- Navigation -->
+  <header class="absolute fixed top-0 left-0 w-full bg-white z-50 shadow-md transition-all duration-300" id="navbar">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center">
+        <img src="./assets/img/LogoWNE.jpg" alt="WA NIYON EVENT Logo"
+          class="w-auto h-16 object-contain rounded-lg hover:opacity-90 transition-opacity" loading="lazy">
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="text-primary font-medium hover:text-accent transition-colors hover-underline"
+          aria-current="page">
+          Accueil
+        </a>
+        <a href="guest-houses.html"
+          class="text-gray-700 font-medium hover:text-accent transition-colors hover-underline">
+          Guest Houses
+        </a>
+        <a href="event-halls.html"
+          class="text-gray-700 font-medium hover:text-accent transition-colors hover-underline">
+          Salles de Fête
+        </a>
+        <a href="tourism.html" class="text-gray-700 font-medium hover:text-accent transition-colors hover-underline">
+          Tourisme
+        </a>
+        <a href="contact.html" class="text-gray-700 font-medium hover:text-accent transition-colors hover-underline">
+          Contact
+        </a>
+      </nav>
+
+      <!-- CTA Button -->
+      <div class="hidden md:flex items-center space-x-4">
+        <a href="tel:+22912345678" class="flex items-center text-gray-700 hover:text-primary transition-colors"
+          aria-label="Appelez-nous">
+          <i class="fas fa-phone-alt mr-2"></i>
+          <span class="font-medium">+229 12 34 56 78</span>
+        </a>
+        <a href="reservation.html"
+          class="bg-secondary text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all hover-scale font-medium shadow-md">
+          Réserver
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button id="menu-toggle" type="button" class="md:hidden text-primary focus:outline-none" aria-label="Menu"
+        aria-expanded="false">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
     </div>
 
-    <!-- Liste des Guest Houses -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white p-6 rounded-lg shadow-lg">
-            <img src="guest-house1.jpg" alt="Guest House 1" class="w-full h-48 object-cover rounded mb-4">
-            <h4 class="text-xl font-semibold">Guest House Cotonou</h4>
-            <p class="text-gray-600 mb-4">Capacité : 4 personnes | Wi-Fi | Petit-déjeuner inclus</p>
-            <p class="text-green-600 font-bold">60€/nuit</p>
-            <a href="#" class="block mt-4 bg-yellow-400 text-green-800 px-4 py-2 rounded">Voir les détails</a>
-        </div>
-        <!-- Répéter pour d'autres guest houses -->
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 shadow-lg transition-all duration-300 origin-top">
+      <a href="index.html"
+        class="block py-3 text-primary font-medium hover:text-accent border-b border-gray-100 transition-colors"
+        aria-current="page">
+        Accueil
+      </a>
+      <a href="guest-houses.html"
+        class="block py-3 text-gray-700 font-medium hover:text-accent border-b border-gray-100 transition-colors">
+        Guest Houses
+      </a>
+      <a href="event-halls.html"
+        class="block py-3 text-gray-700 font-medium hover:text-accent border-b border-gray-100 transition-colors">
+        Salles de Fête
+      </a>
+      <a href="tourism.html"
+        class="block py-3 text-gray-700 font-medium hover:text-accent border-b border-gray-100 transition-colors">
+        Tourisme
+      </a>
+      <a href="contact.html"
+        class="block py-3 text-gray-700 font-medium hover:text-accent border-b border-gray-100 transition-colors">
+        Contact
+      </a>
+      <div class="pt-4">
+        <a href="reservation.html"
+          class="block w-full text-center bg-secondary text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-medium">
+          Réserver
+        </a>
+      </div>
     </div>
-
-    <!-- Carte Interactive -->
-    <div class="mt-12">
-        <iframe src="https://www.google.com/maps/embed..." class="w-full h-96 rounded-lg" title="guest-house-icon"></iframe>
-    </div>
+  </header>
+<main>
+  <!-- Hero Section -->
+<section class="relative h-[60vh] bg-cover bg-center flex items-center justify-center text-white clip-polygon" style="background-image: url('./assets/img/guest-hero.jpg');">
+  <div class="bg-black bg-opacity-50 w-full h-full absolute top-0 left-0"></div>
+  <div class="relative z-10 text-center px-4">
+    <h1 class="text-4xl md:text-5xl font-bold text-accent mb-4 animate-fade-in">Nos Guest Houses</h1>
+    <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto animate-fade-in animate-delay-200">Des lieux confortables, modernes et accueillants pour vos séjours à Cotonou et ailleurs au Bénin.</p>
+  </div>
 </section>
 
+<!-- Intro -->
+<section class="py-16 bg-white">
+  <div class="max-w-5xl mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold text-primary mb-6">Pourquoi choisir nos Guest Houses ?</h2>
+    <p class="text-gray-600 text-lg leading-relaxed">
+      Que ce soit pour un voyage d'affaires, des vacances en famille ou un court séjour, nos hébergements sont soigneusement sélectionnés pour offrir confort, sécurité et accessibilité à tous.
+    </p>
+  </div>
+</section>
 
-
-    <!-- Footer -->
-    <footer class="bg-green-800 text-white mt-12">
-        <div class="container mx-auto px-4 py-6 text-center">
-            <p>© 2024 WA NIYON EVENT - Tous droits réservés</p>
+<!-- Guest House Cards -->
+<section class="bg-gray-100 py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-primary mb-10 text-center">Nos Hébergements</h2>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <!-- Card 1 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale transition">
+        <img src="./assets/img/guest1.jpg" alt="Guest House 1" class="w-full h-60 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-2">Guest House Azur</h3>
+          <p class="text-gray-600 text-sm mb-4">Située à Fidjrossè, proche de la plage, cette villa vous offre 4 chambres climatisées, piscine et jardin.</p>
+          <a href="reservation.html" class="text-primary font-semibold hover:text-accent transition">Réserver →</a>
         </div>
-    </footer>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale transition">
+        <img src="./assets/img/guest2.jpg" alt="Guest House 2" class="w-full h-60 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-2">Villa Émeraude</h3>
+          <p class="text-gray-600 text-sm mb-4">Au cœur de Cotonou, la Villa Émeraude combine modernité et accessibilité avec 3 chambres luxueuses.</p>
+          <a href="reservation.html" class="text-primary font-semibold hover:text-accent transition">Réserver →</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover-scale transition">
+        <img src="./assets/img/guest3.jpg" alt="Guest House 3" class="w-full h-60 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-secondary mb-2">Résidence Waniyon</h3>
+          <p class="text-gray-600 text-sm mb-4">Idéale pour les séjours en groupe avec 5 chambres, grande terrasse, wifi haut débit et cuisine équipée.</p>
+          <a href="reservation.html" class="text-primary font-semibold hover:text-accent transition">Réserver →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services / Atouts -->
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold text-primary mb-10">Ce que vous obtenez avec chaque réservation</h2>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+        <i class="fas fa-wifi text-secondary text-3xl mb-4"></i>
+        <h4 class="font-bold text-lg text-primary mb-2">WiFi Haut Débit</h4>
+        <p class="text-gray-600 text-sm">Restez connecté pendant toute la durée de votre séjour.</p>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+        <i class="fas fa-shield-alt text-secondary text-3xl mb-4"></i>
+        <h4 class="font-bold text-lg text-primary mb-2">Sécurité 24h/24</h4>
+        <p class="text-gray-600 text-sm">Des gardiens et un système de surveillance pour votre tranquillité.</p>
+      </div>
+      <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+        <i class="fas fa-car text-secondary text-3xl mb-4"></i>
+        <h4 class="font-bold text-lg text-primary mb-2">Parking Privé</h4>
+        <p class="text-gray-600 text-sm">Un espace sécurisé pour votre véhicule à chaque maison.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 bg-secondary text-white text-center px-4">
+  <h2 class="text-3xl md:text-4xl font-bold mb-6">Prêt à réserver votre séjour ?</h2>
+  <p class="text-lg mb-8">Nos équipes sont disponibles pour vous accompagner dans le choix de l’hébergement idéal.</p>
+  <a href="reservation.html" class="bg-white text-secondary font-semibold px-8 py-4 rounded-full hover:bg-opacity-90 transition-all shadow-lg">Réserver maintenant</a>
+</section>
+
+</main>
+
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <!-- Column 1: About -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 text-accent">WA NIYON EVENT</h3>
+          <img src="./assets/img/LogoWNE.jpg" alt="WA NIYON EVENT Logo" class="h-16 w-auto object-contain mb-4"
+            loading="lazy">
+          <p class="text-gray-300 mb-4">
+            Votre partenaire de confiance pour l'hébergement, les événements et le tourisme au Bénin.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-300 hover:text-accent transition-colors text-xl" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-accent transition-colors text-xl" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-accent transition-colors text-xl" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-accent transition-colors text-xl" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 text-accent">Liens Rapides</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="index.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                Accueil
+              </a>
+            </li>
+            <li>
+              <a href="guest-houses.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                Guest Houses
+              </a>
+            </li>
+            <li>
+              <a href="event-halls.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                Salles de Fête
+              </a>
+            </li>
+            <li>
+              <a href="tourism.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                Tourisme
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                À Propos
+              </a>
+            </li>
+            <li>
+              <a href="contact.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Contact -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 text-accent">Contact</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-secondary"></i>
+              <span class="text-gray-300">123 Avenue de la République, Cotonou, Bénin</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone mr-3 text-secondary"></i>
+              <a href="tel:+22912345678" class="text-gray-300 hover:text-white transition-colors">
+                +229 12 34 56 78
+              </a>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3 text-secondary"></i>
+              <a href="mailto:contact@waniyonevent.bj" class="text-gray-300 hover:text-white transition-colors">
+                contact@waniyonevent.bj
+              </a>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-clock mr-3 text-secondary"></i>
+              <span class="text-gray-300">Lun-Sam : 8h-19h</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Newsletter -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 text-accent">Newsletter</h3>
+          <p class="text-gray-300 mb-4">
+            Inscrivez-vous pour recevoir nos offres spéciales et actualités.
+          </p>
+          <form class="flex flex-col space-y-3">
+            <input type="email" placeholder="Votre email"
+              class="px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent" required>
+            <button type="submit"
+              class="bg-secondary text-white px-4 py-3 rounded-lg hover:bg-opacity-90 transition-all font-medium">
+              S'inscrire
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-gray-700 pt-8 text-center">
+        <p class="text-gray-400">
+          © 2024 WA NIYON EVENT - Tous droits réservés. |
+          <a href="#" class="hover:text-white transition-colors hover-underline">
+            Politique de confidentialité
+          </a> |
+          <a href="#" class="hover:text-white transition-colors hover-underline">
+            Conditions générales
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button type="button" id="back-to-top"
+    class="fixed bottom-8 right-8 bg-secondary text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50"
+    aria-label="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+      mobileMenu.classList.toggle('hidden');
+      menuToggle.innerHTML = mobileMenu.classList.contains('hidden')
+        ? '<i class="fas fa-bars text-2xl"></i>'
+        : '<i class="fas fa-times text-2xl"></i>';
+    });
+
+    // Initialize Hero Swiper
+    const heroSwiper = new Swiper('.hero-swiper', {
+      loop: true,
+      autoplay: {
+        delay: 7000,
+        disableOnInteraction: false,
+      },
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+
+    // Initialize Testimonial Swiper
+    const testimonialSwiper = new Swiper('.testimonial-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        }
+      }
+    });
+
+    // FAQ Toggle
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('i');
+
+        content.classList.toggle('hidden');
+        icon.classList.toggle('transform');
+        icon.classList.toggle('rotate-180');
+      });
+    });
+
+    // Back to Top Button
+    const backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.remove('opacity-100', 'visible');
+        backToTopButton.classList.add('opacity-0', 'invisible');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Animate on scroll
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.animate-fade-in');
+
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (elementPosition < windowHeight - 100) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+
+    // Set initial state for animated elements
+    document.querySelectorAll('.animate-fade-in').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+
+    window.addEventListener('load', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
+
+    // Counter animation
+    const animateCount = () => {
+      const counters = document.querySelectorAll('.animate-count');
+      const speed = 200;
+
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(animateCount, 1);
+        } else {
+          counter.innerText = target;
+        }
+      });
+    };
+
+    // Start counter when section is in view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.animate-count').forEach(el => {
+      observer.observe(el.parentElement.parentElement);
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('shadow-lg', 'py-2');
+        navbar.classList.remove('py-3');
+      } else {
+        navbar.classList.remove('shadow-lg', 'py-2');
+        navbar.classList.add('py-3');
+      }
+    });
+  </script>
 </body>
+
 </html>

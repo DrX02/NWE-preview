@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WA NIYON EVENT - Accueil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-green-700 text-white">
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+            <h1 class="text-3xl font-bold">WA NIYON EVENT</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="hover:text-yellow-300">Accueil</a></li>
+                    <li><a href="guest-houses.html" class="hover:text-yellow-300">Guest Houses</a></li>
+                    <li><a href="event-halls.html" class="hover:text-yellow-300">Salles de Fête</a></li>
+                    <li><a href="tourism.html" class="hover:text-yellow-300">Tourisme</a></li>
+                    <li><a href="contact.html" class="hover:text-yellow-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<section class="container mx-auto px-4 py-12">
+    <h3 class="text-3xl font-bold mb-8">Explorez le Bénin</h3>
+    
+    <!-- Filtres -->
+    <div class="mb-6">
+        <select title="Filtres" class="border p-2 rounded">
+            <option>Type d'activité</option>
+            <option>Culturel</option>
+            <option>Nature</option>
+        </select>
+    </div>
+
+    <!-- Destinations -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <img src="lake-nokoue.jpg" alt="Lac Nokoué" class="w-full h-48 object-cover rounded mb-4">
+            <h4 class="text-xl font-semibold">Lac Nokoué</h4>
+            <p class="text-gray-600">Découvrez les villages lacustres</p>
+        </div>
+        <!-- Autres destinations -->
+    </div>
+
+    <!-- Carte Interactive -->
+    <iframe src="https://www.google.com/maps/d/embed..." class="w-full h-96 mt-12 rounded-lg" title="tourism-icon"></iframe>
+</section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-green-800 text-white mt-12">
+        <div class="container mx-auto px-4 py-6 text-center">
+            <p>© 2024 WA NIYON EVENT - Tous droits réservés</p>
+        </div>
+    </footer>
+</body>
+</html>

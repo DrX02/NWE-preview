@@ -1,432 +1,497 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WA NIYON EVENT - Accueil</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper/swiper-bundle.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      /* Couleurs personnalisées */
-      :root {
-        --primary: #312682;
-        --secondary: #c23b49;
-        --accent: #ffd700;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="WA NIYON EVENT - Votre partenaire pour l'hébergement, les événements et le tourisme au Bénin. Guest houses de luxe, salles de fête et circuits touristiques.">
+  <meta name="keywords"
+    content="Bénin, tourisme, guest house, salle de fête, événement, mariage, conférence, hébergement, Cotonou">
+  <meta name="author" content="WA NIYON EVENT">
+  <title>WA NIYON EVENT - Accueil | Hébergement & Événements au Bénin</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    /* Animation personnalisée */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
       }
 
-      .text-primary {
-        color: var(--primary);
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
-      .text-secondary {
-        color: var(--secondary);
-      }
-      .text-accent {
-        color: var(--accent);
-      }
-      .bg-primary {
-        background-color: var(--primary);
-      }
-      .bg-secondary {
-        background-color: var(--secondary);
-      }
-      .bg-accent {
-        background-color: var(--accent);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
       }
 
-      /* Animations au scroll */
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      50% {
+        transform: translateY(-10px);
       }
 
-      .animate-fade-up {
-        animation: fadeUp 0.6s ease-out;
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .animate-delay-100 {
+      animation-delay: 100ms;
+    }
+
+    .animate-delay-200 {
+      animation-delay: 200ms;
+    }
+
+    .animate-delay-300 {
+      animation-delay: 300ms;
+    }
+
+    /* Styles personnalisés */
+    .text-shadow {
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .gradient-overlay {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .clip-polygon {
+      clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    }
+
+    /* Swiper custom */
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background: white;
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+      background: #ffd700;
+      transform: scale(1.2);
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: #ffd700;
+      background: rgba(0, 0, 0, 0.3);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      background: rgba(0, 0, 0, 0.5);
+      transform: scale(1.1);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #312682;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #1e164d;
+    }
+
+    /* Custom colors */
+    .bg-primary {
+      background-color: #312682;
+    }
+
+    .bg-secondary {
+      background-color: #c23b49;
+    }
+
+    .bg-accent {
+      background-color: #ffd700;
+    }
+
+    .text-primary {
+      color: #312682;
+    }
+
+    .text-secondary {
+      color: #c23b49;
+    }
+
+    .text-accent {
+      color: #ffd700;
+    }
+
+    .border-primary {
+      border-color: #312682;
+    }
+
+    .border-secondary {
+      border-color: #c23b49;
+    }
+
+    .border-accent {
+      border-color: #ffd700;
+    }
+
+    /* Hover effects */
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+
+    .hover-scale:hover {
+      transform: scale(1.03);
+    }
+
+    .hover-underline {
+      position: relative;
+    }
+
+    .hover-underline::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #ffd700;
+      transition: width 0.3s ease;
+    }
+
+    .hover-underline:hover::after {
+      width: 100%;
+    }
+
+    /* Loading animation */
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
       }
 
-      /* Hover des boutons */
-      .btn-hover {
-        transition: all 0.3s ease;
-      }
-
-      .btn-hover:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Effet parallax (optionnel) */
-      .parallax {
-        background-attachment: fixed;
-        background-size: cover;
-      }
-
-      /* Vague animée entre sections */
-      .wave-divider {
-        position: relative;
-        height: 100px;
-        background: #fff;
-      }
-
-      .wave-divider::before {
-        content: "";
-        position: absolute;
-        top: -50px;
-        left: 0;
-        right: 0;
-        background: url("wave.svg") repeat-x;
-        height: 100px;
-        animation: wave 2s linear infinite;
-      }
-
-      @keyframes wave {
-        0% {
-          background-position: 0 0;
-        }
-        100% {
-          background-position: 100px 0;
-        }
-      }
-
-      /* Personnalisation Swiper */
-      .swiper {
-        width: 100%;
-        height: 100vh;
-      }
-      .swiper-slide {
-        background-size: cover;
-        background-position: center;
-      }
-      .swiper-pagination-bullet {
-        background: #fff;
+      50% {
         opacity: 0.5;
       }
-      .swiper-pagination-bullet-active {
-        opacity: 1;
-        background: var(--accent);
-      }
+    }
 
-      .swiper-button-next,
-      .swiper-button-prev {
-        color: var(--accent);
-      }
-    </style>
-  </head>
-  <body class="bg-gray-50">
-    <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 w-full bg-white z-50 shadow-md">
-      <div
-        class="container mx-auto px-4 py-2 flex justify-between items-center"
-      >
-        <img
-          src="./assets/img/LogoWNE.jpg"
-          alt="WA NIYON EVENT"
-          class="w-auto h-20 object-cover rounded-lg"
-        />
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+</head>
 
-        <!-- Menu Desktop -->
-        <nav class="hidden md:flex space-x-6">
-          <a
-            href="index.html"
-            class="font-medium text-primary hover:text-accent transition-colors"
-            >Accueil</a
-          >
-          <a
-            href="guest-houses.html"
-            class="font-medium text-gray-700 hover:text-accent transition-colors"
-            >Guest Houses</a
-          >
-          <a
-            href="event-halls.html"
-            class="font-medium text-gray-700 hover:text-accent transition-colors"
-            >Salles de Fête</a
-          >
-          <a
-            href="tourism.html"
-            class="font-medium text-gray-700 hover:text-accent transition-colors"
-            >Tourisme</a
-          >
-          <a
-            href="contact.html"
-            class="font-medium text-gray-700 hover:text-accent transition-colors"
-            >Contact</a
-          >
-        </nav>
+<body class="bg-gray-50 font-sans antialiased">
+  <!-- Navigation -->
+  <header class="absolute fixed top-0 left-0 w-full bg-white z-50 shadow-md transition-all duration-300" id="navbar">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center">
+        <img src="./assets/img/LogoWNE.jpg" alt="WA NIYON EVENT Logo"
+          class="w-auto h-16 object-contain rounded-lg hover:opacity-90 transition-opacity" loading="lazy">
+      </a>
 
-        <!-- Bouton Réservation (Desktop) -->
-        <a
-          href="reservation.html"
-          class="hidden md:block bg-secondary text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition btn-hover"
-          >Réserver</a
-        >
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="text-primary font-medium hover:text-accent transition-colors hover-underline"
+          aria-current="page">
+          Accueil
+        </a>
+        <a href="guest-houses.html"
+          class="text-gray-700 font-medium hover:text-accent transition-colors hover-underline">
+          Guest Houses
+        </a>
+        <a href="event-halls.html"
+          class="text-gray-700 font-medium hover:text-accent transition-colors hover-underline">
+          Salles de Fête
+        </a>
+        <a href="tourism.html" class="text-gray-700 font-medium hover:text-accent transition-colors hover-underline">
+          Tourisme
+        </a>
+        <a href="contact.html" class="text-gray-700 font-medium hover:text-accent transition-colors hover-underline">
+          Contact
+        </a>
+      </nav>
 
-        <!-- Menu Mobile -->
-        <button id="menu-toggle" title="menu" class="md:hidden text-primary">
-          <i class="fas fa-bars text-2xl"></i>
-        </button>
+      <!-- CTA Button -->
+      <div class="hidden md:flex items-center space-x-4">
+        <a href="tel:+22912345678" class="flex items-center text-gray-700 hover:text-primary transition-colors"
+          aria-label="Appelez-nous">
+          <i class="fas fa-phone-alt mr-2"></i>
+          <span class="font-medium">+229 12 34 56 78</span>
+        </a>
+        <a href="reservation.html"
+          class="bg-secondary text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all hover-scale font-medium shadow-md">
+          Réserver
+        </a>
       </div>
 
-      <!-- Mobile Menu -->
-      <div
-        id="mobile-menu"
-        class="hidden md:hidden bg-white text-center py-4 px-6 shadow-lg"
-      >
-        <a
-          href="index.html"
-          class="block py-2 text-primary font-medium hover:text-accent"
-          >Accueil</a
-        >
-        <a
-          href="guest-houses.html"
-          class="block py-2 text-gray-700 font-medium hover:text-accent"
-          >Guest Houses</a
-        >
-        <a
-          href="event-halls.html"
-          class="block py-2 text-gray-700 font-medium hover:text-accent"
-          >Salles de Fête</a
-        >
-        <a
-          href="tourism.html"
-          class="block py-2 text-gray-700 font-medium hover:text-accent"
-          >Tourisme</a
-        >
-        <a
-          href="contact.html"
-          class="block py-2 text-gray-700 font-medium hover:text-accent"
-          >Contact</a
-        >
-        <a
-          href="reservation.html"
-          class="block mt-4 bg-secondary text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition w-full"
-          >Réserver</a
-        >
-      </div>
-    </header>
+      <!-- Mobile Menu Toggle -->
+      <button id="menu-toggle" type="button" class="md:hidden text-primary focus:outline-none" aria-label="Menu"
+        aria-expanded="false">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
 
-    <!-- Hero Carousel -->
-    <section class="swiper hero-swiper">
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 shadow-lg transition-all duration-300 origin-top">
+      <a href="index.html"
+        class="block py-3 text-primary font-medium hover:text-accent border-b border-gray-100 transition-colors"
+        aria-current="page">
+        Accueil
+      </a>
+      <a href="guest-houses.html"
+        class="block py-3 text-gray-700 font-medium hover:text-accent border-b border-gray-100 transition-colors">
+        Guest Houses
+      </a>
+      <a href="event-halls.html"
+        class="block py-3 text-gray-700 font-medium hover:text-accent border-b border-gray-100 transition-colors">
+        Salles de Fête
+      </a>
+      <a href="tourism.html"
+        class="block py-3 text-gray-700 font-medium hover:text-accent border-b border-gray-100 transition-colors">
+        Tourisme
+      </a>
+      <a href="contact.html"
+        class="block py-3 text-gray-700 font-medium hover:text-accent border-b border-gray-100 transition-colors">
+        Contact
+      </a>
+      <div class="pt-4">
+        <a href="reservation.html"
+          class="block w-full text-center bg-secondary text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-medium">
+          Réserver
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Slider -->
+    <section class="relative swiper hero-swiper relative">
       <div class="swiper-wrapper">
         <!-- Slide 1 -->
-        <div
-          class="swiper-slide relative"
-          style="
-            background-image: url('https://img.freepik.com/free-photo/view-pool-hotel-ocean-water_1203-4730.jpg?t=st=1741808803~exp=1741812403~hmac=a9494f549a143b9d6486844e293d78347fb6be452686caf3e7d921aecf60f67d&w=1380');
-            background-size: cover;
-            background-position: center;
-          "
-        >
-          <div class="absolute inset-0 bg-[#312682] bg-opacity-40"></div>
-          <div class="container mx-auto px-4 h-full flex items-center">
-            <div class="text-white z-10 text-center md:text-left max-w-2xl">
-              <h1 class="text-5xl md:text-6xl font-bold mb-4">
+        <div class="swiper-slide relative min-h-screen pt-20 gradient-overlay"
+          style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); background-size: cover; background-position: center;">
+          <div class="absolute inset-0 gradient-overlay"></div>
+          <div class="container mx-auto px-4 h-full flex items-center relative z-10">
+            <div class="pt-40 text-white max-w-2xl text-center md:text-left animate-fade-in">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-shadow">
                 Guest Houses Confortables
               </h1>
-              <p class="text-xl md:text-2xl mb-8">
-                Profitez d'un hébergement authentique dans nos guest houses de
-                luxe avec piscine au cœur du Bénin
+              <p class="text-lg md:text-xl lg:text-2xl mb-8 text-shadow">
+                Profitez d'un hébergement authentique dans nos guest houses de luxe avec piscine au cœur du Bénin
               </p>
-              <div class="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="guest-houses.html"
-                  class="bg-accent text-primary px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-bold btn-hover text-center"
-                  >Découvrir nos hébergements</a
-                >
-                <a
-                  href="#services"
-                  class="bg-white text-primary px-6 py-3 rounded-lg hover:bg-gray-100 transition font-medium btn-hover text-center"
-                  >Nos services</a
-                >
+              <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <a href="guest-houses.html"
+                  class="bg-accent text-primary px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all hover-scale font-bold text-center shadow-lg">
+                  Découvrir nos hébergements
+                </a>
+                <a href="#services"
+                  class="bg-white text-primary px-6 py-3 rounded-lg hover:bg-gray-100 transition-all hover-scale font-medium text-center shadow-lg">
+                  Nos services
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Slide 2 -->
-        <div
-          class="swiper-slide relative"
-          style="
-            background-image: url('https://img.freepik.com/free-photo/photorealistic-wedding-venue-with-intricate-decor-ornaments_23-2151481476.jpg?t=st=1741854737~exp=1741858337~hmac=344311cca97a809c86835b5db830900636198181583b977c0dea24a36e070daa&w=1380');
-            background-size: cover;
-            background-position: center;
-          "
-        >
-          <div class="absolute inset-0 bg-[#ffd700] bg-opacity-20"></div>
-          <div class="container mx-auto px-4 h-full flex items-center">
-            <div class="text-white z-10 text-center md:text-left max-w-2xl">
-              <h1 class="text-5xl md:text-6xl font-bold mb-4">
+        <div class="swiper-slide relative min-h-screen pt-20"
+          style="background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1798&q=80'); background-size: cover; background-position: center;">
+          <div class="absolute inset-0 gradient-overlay"></div>
+          <div class="container mx-auto px-4 h-full flex items-center relative z-10">
+            <div class="pt-40 text-white max-w-2xl text-center md:text-left">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-shadow">
                 Votre Événement Inoubliable
               </h1>
-              <p class="text-xl md:text-2xl mb-8">
-                Organisez votre mariage, conférence ou événement professionnel
-                dans nos salles prestigieuses et bénéficiez d'un service complet
+              <p class="text-lg md:text-xl lg:text-2xl mb-8 text-shadow">
+                Organisez votre mariage, conférence ou événement professionnel dans nos salles prestigieuses et
+                bénéficiez
+                d'un service complet
               </p>
-              <div class="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="event-halls.html"
-                  class="bg-accent text-primary px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-bold btn-hover text-center"
-                  >Voir nos salles</a
-                >
-                <a
-                  href="contact.html"
-                  class="bg-secondary text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-medium btn-hover text-center"
-                  >Demander un devis</a
-                >
+              <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <a href="event-halls.html"
+                  class="bg-accent text-primary px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all hover-scale font-bold text-center shadow-lg">
+                  Voir nos salles
+                </a>
+                <a href="contact.html"
+                  class="bg-secondary text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all hover-scale font-medium text-center shadow-lg">
+                  Demander un devis
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Slide 3 -->
-        <div
-          class="swiper-slide relative"
-          style="
-            background-image: url('https://img.freepik.com/free-photo/wide-angle-shot-houses-built-dry-field-few-plants_181624-13581.jpg?t=st=1741852988~exp=1741856588~hmac=f5475671315993d60c6feb24f5ed00c3c65a5bb3669056012ae6622e88a533cb&w=1380');
-            background-size: cover;
-            background-position: center;
-          "
-        >
-          <div class="absolute inset-0 bg-[#c23b49] bg-opacity-30"></div>
-          <div class="container mx-auto px-4 h-full flex items-center">
-            <div class="text-white z-10 text-center md:text-left max-w-2xl">
-              <h1 class="text-5xl md:text-6xl font-bold mb-4">
+        <div class="swiper-slide relative min-h-screen pt-20"
+          style="background-image: url('https://images.unsplash.com/photo-1581434681675-2578b9d70780?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); background-size: cover; background-position: center;">
+          <div class="absolute inset-0 gradient-overlay"></div>
+          <div class="container mx-auto px-4 h-full flex items-center relative z-10">
+            <div class="pt-40 text-white max-w-2xl text-center md:text-left">
+              <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-shadow">
                 Découvrez le Bénin Authentique
               </h1>
-              <p class="text-xl md:text-2xl mb-8">
-                Explorez la richesse culturelle et les merveilles naturelles du
-                Bénin avec nos circuits touristiques personnalisés
+              <p class="text-lg md:text-xl lg:text-2xl mb-8 text-shadow">
+                Explorez la richesse culturelle et les merveilles naturelles du Bénin avec nos circuits touristiques
+                personnalisés
               </p>
-              <div class="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="tourism.html"
-                  class="bg-accent text-primary px-6 py-3 rounded-lg hover:bg-opacity-90 transition font-bold btn-hover text-center"
-                  >Nos circuits touristiques</a
-                >
-                <a
-                  href="reservation.html"
-                  class="bg-white text-primary px-6 py-3 rounded-lg hover:bg-gray-100 transition font-medium btn-hover text-center"
-                  >Réserver maintenant</a
-                >
+              <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <a href="tourism.html"
+                  class="bg-accent text-primary px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all hover-scale font-bold text-center shadow-lg">
+                  Nos circuits touristiques
+                </a>
+                <a href="reservation.html"
+                  class="bg-white text-primary px-6 py-3 rounded-lg hover:bg-gray-100 transition-all hover-scale font-medium text-center shadow-lg">
+                  Réserver maintenant
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div
-        class="swiper-pagination absolute bottom-4 left-1/2  z-20"
-      ></div>
+      <!-- Navigation -->
+      <div class="swiper-pagination absolute bottom-8 left-1/2 z-20"></div>
       <div class="swiper-button-next hidden md:flex"></div>
       <div class="swiper-button-prev hidden md:flex"></div>
+
+      <!-- Scroll Down Indicator -->
+      <!-- <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 hidden md:block animate-bounce">
+        <a href="#about" class="text-white text-2xl" aria-label="Scroll down">
+          <i class="fas fa-chevron-down"></i>
+        </a>
+      </div> -->
     </section>
 
-    <!-- Section À Propos -->
-    <section class="bg-white py-16" id="about">
-      <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-        <div class="max-w-screen-lg mx-auto">
-          <h2
-            class="mb-6 text-4xl tracking-tight font-bold text-center text-primary"
-          >
-            Bienvenue chez
-            <span class="font-extrabold text-secondary">WA NIYON EVENT</span>,
-            votre partenaire au Bénin
-          </h2>
-          <p class="mb-6 text-lg text-gray-700">
-            Chez WA NIYON EVENT, nous sommes fiers de vous offrir une expérience
-            authentiquement béninoise, combinant confort moderne et traditions
-            locales. Notre agence propose des services complets pour rendre
-            votre séjour ou votre événement inoubliable au cœur du Bénin.
-          </p>
-          <p class="mb-8 text-lg font-medium text-gray-700">
-            De nos guest houses de luxe à nos salles de fêtes élégantes, en
-            passant par nos circuits touristiques enrichissants, notre équipe
-            dévouée s'engage à dépasser vos attentes. Que vous soyez en voyage
-            d'affaires, en vacances en famille, ou à la recherche du lieu
-            parfait pour votre mariage ou conférence, WA NIYON EVENT est là pour
-            rendre chaque moment spécial.
-          </p>
-          <div class="text-center">
-            <a
-              href="about.html"
-              class="inline-flex items-center font-medium text-primary hover:text-[#c23b49] transition-colors"
-            >
-              En savoir plus sur nous
-              <svg
-                class="ml-1 w-6 h-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section About -->
-    <section id="about" class="py-16 bg-white">
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-white">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 text-center text-primary">
-          À Propos de Nous
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="mb-4 md:mb-0">
+        <div class="max-w-4xl mx-auto text-center mb-16">
+          <span class="text-secondary font-semibold mb-2 block">À PROPOS DE NOUS</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+            Bienvenue chez <span class="text-secondary">WA NIYON EVENT</span>, votre partenaire au Bénin
+          </h2>
+          <div class="w-24 h-1 bg-accent mx-auto mb-8"></div>
+          <p class="text-lg text-gray-700 mb-6">
+            Chez WA NIYON EVENT, nous sommes fiers de vous offrir une expérience authentiquement béninoise, combinant
+            confort moderne et traditions locales. Notre agence propose des services complets pour rendre votre séjour
+            ou
+            votre événement inoubliable au cœur du Bénin.
+          </p>
+          <p class="text-lg text-gray-700">
+            De nos guest houses de luxe à nos salles de fêtes élégantes, en passant par nos circuits touristiques
+            enrichissants, notre équipe dévouée s'engage à dépasser vos attentes.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="relative">
             <img
-              src="https://img.freepik.com/free-photo/about-as-service-contact-information-concept_53876-138509.jpg?t=st=1741858289~exp=1741861889~hmac=d3017965fe92f32596c959ce232f034f3eeb7c30774742d426eb25471319f8c1&w=1380"
-              alt="À Propos de Nous"
-              class="w-full h-96 object-cover rounded-lg shadow-md"
-            />
+              src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              alt="WA NIYON EVENT" class="w-full h-auto rounded-xl shadow-xl hover-scale transition-transform"
+              loading="lazy">
+            <div class="absolute -bottom-6 -right-6 bg-accent p-4 rounded-xl shadow-lg hidden md:block">
+              <h3 class="text-primary text-xl font-bold">10+</h3>
+              <p class="text-primary">Années d'expérience</p>
+            </div>
           </div>
-          <div class="flex flex-col justify-center">
-            <h3 class="text-2xl font-semibold mb-4 text-secondary">
-              WA NIYON EVENT
+
+          <div>
+            <h3 class="text-2xl font-bold mb-6 text-secondary">
+              Notre histoire et notre mission
             </h3>
-            <p class="text-gray-700 mb-6">
-              WA NIYON EVENT est une agence de premier plan spécialisée dans la
-              location de salles de fête et d'hébergements touristiques au
-              Bénin. Notre mission est de transformer vos événements et séjours
-              en expériences mémorables grâce à notre engagement envers
-              l'excellence et l'authenticité béninoise.
-            </p>
-            <p class="text-gray-700 mb-6">
-              Fondée en 2015, notre agence s'est bâtie une solide réputation
-              dans le domaine de l'événementiel et du tourisme au Bénin. Nous
-              vous accompagnons dans la création de souvenirs inoubliables, que
-              ce soit pour vos célébrations familiales, vos événements
-              professionnels ou vos découvertes touristiques de notre magnifique
-              pays.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 mt-2">
-              <a
-                href="#services"
-                class="bg-primary hover:bg-opacity-90 text-white font-medium py-2 px-6 rounded-md text-center transition-all btn-hover"
-              >
-                Découvrir nos services
+            <div class="space-y-4 text-gray-700">
+              <p>
+                Fondée en 2015, WA NIYON EVENT est rapidement devenue une référence dans le domaine de l'hébergement
+                touristique et de l'organisation d'événements au Bénin. Notre mission est de promouvoir le tourisme
+                local
+                tout en offrant des services de qualité internationale.
+              </p>
+              <p>
+                Nous croyons que chaque événement et chaque séjour devrait être une expérience mémorable. C'est pourquoi
+                nous mettons un point d'honneur à personnaliser chaque prestation selon les besoins et attentes de nos
+                clients.
+              </p>
+              <p>
+                Notre équipe est composée de professionnels passionnés qui connaissent parfaitement les richesses
+                culturelles et naturelles du Bénin, et qui ont à cœur de les partager avec vous.
+              </p>
+            </div>
+
+            <div class="mt-8 grid grid-cols-2 gap-4">
+              <div class="flex items-start space-x-3">
+                <div class="bg-opacity-10 p-2 rounded-full">
+                  <i class="fa-solid fa-circle-check text-primary text-xl"></i>
+                  <i class=""></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-primary">Qualité</h4>
+                  <p class="text-sm text-gray-600">Services haut de gamme</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <div class=" bg-opacity-10 p-2 rounded-full">
+                  <i class="fas fa-heart text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-primary">Passion</h4>
+                  <p class="text-sm text-gray-600">Équipe dévouée</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <div class=" bg-opacity-10 p-2 rounded-full">
+                  <i class="fas fa-leaf text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-primary">Authenticité</h4>
+                  <p class="text-sm text-gray-600">Expérience locale</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <div class=" bg-opacity-10 p-2 rounded-full">
+                  <i class="fas fa-star text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-primary">Excellence</h4>
+                  <p class="text-sm text-gray-600">Satisfaction client</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+              <a href="about.html"
+                class="bg-primary hover:bg-opacity-90 text-white font-medium py-3 px-6 rounded-lg transition-all hover-scale text-center">
+                En savoir plus
               </a>
-              <a
-                href="#contact"
-                class="bg-secondary hover:bg-opacity-90 text-white font-medium py-2 px-6 rounded-md text-center transition-all"
-              >
+              <a href="contact.html"
+                class="border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium py-3 px-6 rounded-lg transition-all hover-scale text-center">
                 Nous contacter
               </a>
             </div>
@@ -435,680 +500,891 @@
       </div>
     </section>
 
-    <!-- Section Services -->
-    <section id="services" class="py-16 bg-gray-50">
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 bg-gray-50">
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12 text-primary">
-          Nos Services Phares
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Service 1 : Guest Houses -->
-          <div
-            class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300 ring-2 ring-[#c23b49]"
-          >
-            <div class="flex justify-center">
-              <img
-                src="https://img.freepik.com/free-psd/three-dimensional-real-estate-icon-mock-up_23-2149729145.jpg?t=st=1741858457~exp=1741862057~hmac=a181c6be1b8daf81ad6eb37df5168553332084d31faa2676b45d1641cf6ba580&w=826"
-                alt="Guest House"
-                class="w-40 h-40 object-cover mb-6 rounded-full ring-2 ring-[#312682]"
-              />
-            </div>
-            <h3 class="text-xl font-semibold text-center mb-4 text-secondary">
-              Guest Houses
-            </h3>
-            <p class="text-gray-600 text-center mb-6">
-              Séjournez dans nos guest houses authentiques, alliant confort
-              moderne et charme béninois. Chaque hébergement dispose d'une
-              piscine privative, d'un service de petit-déjeuner avec des
-              produits locaux et d'un personnel attentif pour rendre votre
-              séjour inoubliable.
-            </p>
-            <div class="text-center">
-              <a
-                href="#booking"
-                class="inline-block bg-primary hover:bg-[#c23b49] text-white font-medium py-2 px-6 rounded-md transition-all"
-              >
-                Réserver maintenant
-              </a>
-            </div>
-          </div>
-
-          <!-- Service 2 : Salles de Fête -->
-          <div
-            class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300 ring-2 ring-[#c23b49]"
-          >
-            <div class="flex justify-center">
-              <img
-                src="https://img.freepik.com/premium-photo/calendar-icon-with-check-sign-3d-web-illustrations_250043-236.jpg?w=826"
-                alt="Salle de Fête"
-                class="w-40 h-40 object-cover mb-6 rounded-full ring-2 ring-[#312682]"
-              />
-            </div>
-            <h3 class="text-xl font-semibold text-center mb-4 text-secondary">
-              Salles de Fête
-            </h3>
-            <p class="text-gray-600 text-center mb-6">
-              Nos salles de fête spacieuses et modulables s'adaptent à tous vos
-              événements. Équipées de systèmes audiovisuels modernes, d'une
-              décoration personnalisable et d'options de restauration sur
-              mesure, elles sont idéales pour vos mariages, anniversaires,
-              séminaires et réceptions.
-            </p>
-            <div class="text-center">
-              <a
-                href="#events"
-                class="inline-block bg-primary hover:bg-[#c23b49] text-white font-medium py-2 px-6 rounded-md transition-all"
-              >
-                Planifier un événement
-              </a>
-            </div>
-          </div>
-
-          <!-- Service 3 : Tourisme -->
-          <div
-            class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl hover:translate-y-[-5px] transition-all duration-300 ring-2 ring-[#c23b49]"
-          >
-            <div class="flex justify-center">
-              <img
-                src="https://img.freepik.com/free-vector/vacation-holidays-background-with-realistic-globe-suitcase-photo-camera_1284-10476.jpg?t=st=1741858721~exp=1741862321~hmac=4e441df83eb880396e68cc91eb3467d7d3c4801748de807e5464fa2ac95897ed&w=826"
-                alt="Tourisme"
-                class="w-40 h-40 object-cover mb-6 rounded-full ring-2 ring-[#312682]"
-              />
-            </div>
-            <h3 class="text-xl font-semibold text-center mb-4 text-secondary">
-              Tourisme
-            </h3>
-            <p class="text-gray-600 text-center mb-6">
-              Découvrez toute la richesse culturelle et naturelle du Bénin avec
-              nos circuits touristiques. De la Route des Pêches aux villages
-              lacustres de Ganvié, en passant par le Parc National de la
-              Pendjari, nos guides expérimentés vous feront vivre des
-              expériences authentiques et mémorables.
-            </p>
-            <div class="text-center">
-              <a
-                href="#tours"
-                class="inline-block bg-primary hover:bg-[#c23b49] text-white font-medium py-2 px-6 rounded-md transition-all"
-              >
-                Explorer nos circuits
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section Tourisme -->
-    <section id="tourisme" class="py-16 bg-gray-100">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-8 text-primary">
-          Découvrez les meilleurs endroits au Bénin avec WA NIYON EVENT
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Contenu Textuel -->
-          <div class="flex flex-col justify-center">
-            <p class="text-gray-700 mb-4">
-              Le Bénin regorge de merveilles naturelles, culturelles et
-              historiques qui ne demandent qu'à être explorées. Notre agence
-              vous propose des circuits personnalisés pour découvrir ces joyaux
-              cachés, guidés par nos experts locaux passionnés par leur
-              patrimoine.
-            </p>
-            <p class="text-gray-700 mb-6">
-              De la majestueuse cité lacustre de Ganvié aux parcs nationaux
-              luxuriants, en passant par les sites historiques de la Route des
-              Esclaves à Ouidah, chaque destination vous plongera au cœur de
-              l'authenticité béninoise. Nos circuits incluent transport,
-              hébergement et expériences culturelles pour une immersion totale.
-            </p>
-            <div class="mt-2">
-              <a
-                href="#contact"
-                class="inline-block bg-accent hover:bg-[#c23b49] text-primary hover:text-white font-medium py-2 px-6 rounded-md transition-all btn-hover"
-              >
-                Réserver un circuit touristique
-              </a>
-            </div>
-          </div>
-
-          <!-- Galerie d'Images -->
-          <div class="grid grid-cols-2 gap-4">
-            <div class="relative group">
-              <img
-                src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/88/1a/97/ganvie.jpg?w=1200&h=-1&s=1"
-                alt="Cité lacustre de Ganvié"
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-              />
-              <div
-                class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 rounded-b-lg"
-              >
-                <p class="text-sm font-medium">Ganvié</p>
-              </div>
-            </div>
-            <div class="relative group">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Porte_du_Non_Retour%2C_Ouidah.jpg/1200px-Porte_du_Non_Retour%2C_Ouidah.jpg"
-                alt="Porte du Non-Retour à Ouidah"
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-              />
-              <div
-                class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 rounded-b-lg"
-              >
-                <p class="text-sm font-medium">Ouidah</p>
-              </div>
-            </div>
-            <div class="relative group">
-              <img
-                src="https://www.togovisite.com/wp-content/uploads/2021/05/voyage-benin_pendjari.jpg"
-                alt="Parc National de la Pendjari"
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-              />
-              <div
-                class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 rounded-b-lg"
-              >
-                <p class="text-sm font-medium">Parc de la Pendjari</p>
-              </div>
-            </div>
-            <div class="relative group">
-              <img
-                src="https://img.freepik.com/premium-photo/beautiful-aerial-shot-tata-somba-house-benin-africa_181624-41828.jpg"
-                alt="Tata Somba"
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-              />
-              <div
-                class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-60 text-white p-2 rounded-b-lg"
-              >
-                <p class="text-sm font-medium">Tata Somba</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Destinations phares -->
-        <div class="mt-12">
-          <h3 class="text-2xl font-semibold mb-6 text-center text-secondary">
-            Nos destinations phares
-          </h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Destination 1 -->
-            <div class="bg-white p-4 rounded-lg shadow-md ring-2 ring-[#312682]">
-              <h4 class="font-semibold mb-2">Cité lacustre de Ganvié</h4>
-              <p class="text-gray-600 text-sm mb-3">
-                Surnommée la "Venise de l'Afrique", Ganvié est un village
-                construit sur pilotis au milieu du lac Nokoué. Découvrez le mode
-                de vie unique de ses habitants et leur parfaite harmonie avec
-                l'environnement aquatique.
-              </p>
-            </div>
-
-            <!-- Destination 2 -->
-            <div class="bg-white p-4 rounded-lg shadow-md ring-2 ring-[#312682]">
-              <h4 class="font-semibold mb-2">Route des Esclaves - Ouidah</h4>
-              <p class="text-gray-600 text-sm mb-3">
-                Parcourez ce chemin historique qui mène à la Porte du
-                Non-Retour, un monument commémoratif de la traite négrière.
-                Ouidah est également un centre important du vaudou, avec son
-                temple aux pythons et ses cérémonies traditionnelles.
-              </p>
-            </div>
-
-            <!-- Destination 3 -->
-            <div class="bg-white p-4 rounded-lg shadow-md ring-2 ring-[#312682]">
-              <h4 class="font-semibold mb-2">Parc National de la Pendjari</h4>
-              <p class="text-gray-600 text-sm mb-3">
-                Explorez l'une des réserves naturelles les mieux préservées
-                d'Afrique de l'Ouest, abritant des éléphants, lions, guépards et
-                de nombreuses espèces d'oiseaux. Les safaris guidés vous offrent
-                une expérience inoubliable au cœur de la nature sauvage.
-              </p>
-            </div>
-
-            <!-- Destination 4 -->
-            <div class="bg-white p-4 rounded-lg shadow-md ring-2 ring-[#312682]">
-              <h4 class="font-semibold mb-2">Pays Somba - Tata Somba</h4>
-              <p class="text-gray-600 text-sm mb-3">
-                Admirez l'architecture unique des Tata Somba, ces "châteaux"
-                d'argile construits par l'ethnie Somba dans le nord du Bénin.
-                Ces habitations-forteresses témoignent d'un savoir-faire
-                ancestral et d'une adaptation parfaite à l'environnement.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Expériences Touristiques -->
-    <section class="py-16 bg-white">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold mb-8 text-center text-primary">
-          Expériences Touristiques
-        </h2>
-
-        <!-- Filtres de catégories -->
-        <div class="flex flex-wrap justify-center gap-4 mb-10">
-          <button
-            class="bg-primary hover:bg- btn-hover text-white px-6 py-2 rounded-md font-medium transition-all btn-hover"
-          >
-            Culture
-          </button>
-          <button
-            class="bg-secondary hover:bg-opacity-90 text-white px-6 py-2 rounded-md font-medium transition-all btn-hover"
-          >
-            Nature
-          </button>
-          <button
-            class="bg-accent hover:bg-opacity-80 text-primary px-6 py-2 rounded-md font-medium transition-all btn-hover"
-          >
-            Aventure
-          </button>
-          <button
-            class="border-2 border-primary text-primary hover:bg-[#312682] hover:text-white px-6 py-2 rounded-md font-medium transition-all btn-hover"
-          >
-            Détente
-          </button>
-        </div>
-
-        <!-- Cartes d'expériences -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Expérience 1 -->
-          <div class="group relative overflow-hidden rounded-lg shadow-lg">
-            <img
-              src="https://afrique.le360.ma/wp-content/uploads/sites/4/2021/12/ganvie-village-lacustre-benin.jpg"
-              alt="Ganvié"
-              class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"
-            ></div>
-            <div
-              class="absolute bottom-0 left-0 p-4 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
-            >
-              <span
-                class="inline-block bg-accent text-primary text-xs font-medium px-2 py-1 rounded mb-2"
-                >Culture</span
-              >
-              <h3 class="text-white font-semibold text-xl">
-                Cité lacustre de Ganvié
-              </h3>
-              <p class="text-gray-200 text-sm">
-                Explorez la "Venise de l'Afrique" et découvrez le mode de vie
-                unique de ses habitants qui se déplacent uniquement en pirogue
-                sur le lac Nokoué.
-              </p>
-              <a
-                href="#booking"
-                class="inline-block mt-3 text-accent font-medium text-sm group-hover:underline"
-                >Réserver cette expérience →</a
-              >
-            </div>
-          </div>
-
-          <!-- Expérience 2 -->
-          <div class="group relative overflow-hidden rounded-lg shadow-lg">
-            <img
-              src="https://www.africanparks.org/sites/default/files/styles/1200x675/public/2021-06/ElephantHerdWetSeason-Pendjari-Benin-Kyle-Denobrega-2018_0.jpg"
-              alt="Parc de la Pendjari"
-              class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"
-            ></div>
-            <div
-              class="absolute bottom-0 left-0 p-4 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
-            >
-              <span
-                class="inline-block bg-accent text-primary text-xs font-medium px-2 py-1 rounded mb-2"
-                >Nature</span
-              >
-              <h3 class="text-white font-semibold text-xl">
-                Safari au Parc de la Pendjari
-              </h3>
-              <p class="text-gray-200 text-sm">
-                Partez à la rencontre des éléphants, lions et antilopes dans
-                l'une des plus belles réserves de faune d'Afrique de l'Ouest.
-              </p>
-              <a
-                href="#booking"
-                class="inline-block mt-3 text-accent font-medium text-sm group-hover:underline"
-                >Réserver cette expérience →</a
-              >
-            </div>
-          </div>
-
-          <!-- Expérience 3 -->
-          <div class="group relative overflow-hidden rounded-lg shadow-lg">
-            <img
-              src="https://beninwebtv.com/wp-content/uploads/2020/09/Palais-royaux-dAbomey-1.jpg"
-              alt="Palais royaux d'Abomey"
-              class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"
-            ></div>
-            <div
-              class="absolute bottom-0 left-0 p-4 w-full transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
-            >
-              <span
-                class="inline-block bg-accent text-primary text-xs font-medium px-2 py-1 rounded mb-2"
-                >Culture</span
-              >
-              <h3 class="text-white font-semibold text-xl">
-                Palais royaux d'Abomey
-              </h3>
-              <p class="text-gray-200 text-sm">
-                Visitez ce site classé au patrimoine mondial de l'UNESCO et
-                plongez dans l'histoire fascinante du royaume du Dahomey.
-              </p>
-              <a
-                href="#booking"
-                class="inline-block mt-3 text-accent font-medium text-sm group-hover:underline"
-                >Réserver cette expérience →</a
-              >
-            </div>
-          </div>
-        </div>
-
-        <!-- Bouton voir plus -->
-        <div class="text-center mt-10">
-          <a
-            href="#all-experiences"
-            class="inline-block bg-white border-2 border-primary text-primary hover:bg-[#312682] hover:text-white font-medium py-3 px-8 rounded-md transition-all"
-          >
-            Découvrir toutes nos expériences
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section Guest Houses et Salles de fêtes -->
-    <section class="bg-white py-16">
-      <div
-        class="gap-16 items-center px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:px-6"
-      >
-        <div class="font-light text-gray-700 sm:text-lg">
-          <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-primary">
-            Guest Houses et Salles de Fêtes
+        <div class="text-center mb-16">
+          <span class="text-secondary font-semibold mb-2 block">NOS SERVICES</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+            Découvrez nos offres exclusives
           </h2>
-          <p class="mb-6">
-            Chez WA NIYON EVENT, nous vous proposons des hébergements de charme
-            et des espaces événementiels alliant confort moderne et authenticité
-            béninoise. Nos guest houses sont soigneusement aménagées pour offrir
-            une expérience de séjour unique, avec des chambres spacieuses, des
-            piscines privatives et un service attentionné.
+          <div class="w-24 h-1 bg-accent mx-auto mb-8"></div>
+          <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+            Nous proposons une gamme complète de services pour répondre à tous vos besoins en matière d'hébergement,
+            d'événementiel et de tourisme au Bénin.
           </p>
-          <p class="mb-8">
-            Nos salles de fêtes modulables s'adaptent à tous types d'événements,
-            des mariages intimes aux conférences professionnelles. Chaque espace
-            est équipé des dernières technologies audiovisuelles et peut être
-            personnalisé selon vos préférences. Notre équipe d'experts en
-            événementiel vous accompagne dans la planification et la réalisation
-            de vos projets, pour des moments mémorables.
-          </p>
-          <a
-            href="#reservation"
-            class="inline-block bg-secondary hover:bg-opacity-90 text-white font-medium py-3 px-6 rounded-md transition-all btn-hover"
-          >
-            Réserver maintenant
-          </a>
         </div>
-        <div class="grid grid-cols-2 gap-4 mt-8">
-          <img
-            class="w-full h-auto rounded-lg shadow-md"
-            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-            alt="Guest house avec piscine"
-          />
-          <img
-            class="mt-4 w-full h-auto lg:mt-10 rounded-lg shadow-md"
-            src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1798&q=80"
-            alt="Salle de fête décorée"
-          />
-        </div>
-      </div>
 
-      <!-- Caractéristiques -->
-      <div class="px-4 mx-auto max-w-screen-xl mt-12">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Caractéristique 1 -->
-          <div class="p-6 border border-gray-200 rounded-lg">
-            <div class="flex items-center mb-4">
-              <svg
-                class="w-6 h-6 text-primary mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
-                ></path>
-              </svg>
-              <h3 class="font-semibold text-lg text-[#c23b49]">Guest Houses de Luxe</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all hover-scale group">
+            <div
+              class=" bg-opacity-10 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:bg-opacity-20 transition-colors">
+              <i class="fas fa-home text-primary text-2xl group-hover:text-accent transition-colors"></i>
             </div>
-            <p class="text-gray-600">
-              Nos guest houses disposent de chambres climatisées, d'espaces de
-              détente, de piscines privatives et d'un service de restauration
-              proposant des spécialités locales et internationales.
+            <h3 class="text-xl font-bold mb-4 text-primary">Guest Houses</h3>
+            <p class="text-gray-600 mb-6">
+              Séjournez dans nos guest houses authentiques, alliant confort moderne et charme béninois. Chaque
+              hébergement
+              dispose d'une piscine privative et d'un service personnalisé.
             </p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                <span>Chambres climatisées</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                <span>Piscines privatives</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                <span>Petit-déjeuner local</span>
+              </li>
+            </ul>
+            <a href="guest-houses.html"
+              class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors hover-underline">
+              Voir nos hébergements
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
           </div>
 
-          <!-- Caractéristique 2 -->
-          <div class="p-6 border border-gray-200 rounded-lg">
-            <div class="flex items-center mb-4">
-              <svg
-                class="w-6 h-6 text-primary mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"
-                ></path>
-              </svg>
-              <h3 class="font-semibold text-lg text-[#c23b49]">Salles Polyvalentes</h3>
+          <!-- Service 2 -->
+          <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all hover-scale group">
+            <div
+              class="bg-opacity-10 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:bg-opacity-20 transition-colors">
+              <i class="fas fa-glass-cheers text-primary text-2xl group-hover:text-accent transition-colors"></i>
             </div>
-            <p class="text-gray-600">
-              Nos salles peuvent accueillir de 50 à 300 personnes et sont
-              équipées de systèmes audio-visuels professionnels, d'éclairages
-              modulables et de climatisation pour un confort optimal.
+            <h3 class="text-xl font-bold mb-4 text-primary">Salles de Fête</h3>
+            <p class="text-gray-600 mb-6">
+              Nos salles de fête spacieuses et modulables s'adaptent à tous vos événements. Idéales pour mariages,
+              anniversaires, séminaires et réceptions.
             </p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                <span>Capacité 50-300 personnes</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                <span>Systèmes audiovisuels</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                <span>Options restauration</span>
+              </li>
+            </ul>
+            <a href="event-halls.html"
+              class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors hover-underline">
+              Découvrir nos salles
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
           </div>
 
-          <!-- Caractéristique 3 -->
-          <div class="p-6 border border-gray-200 rounded-lg">
-            <div class="flex items-center mb-4">
-              <svg
-                class="w-6 h-6 text-primary mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"
-                ></path>
-                <path
-                  d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1v-.7a2.5 2.5 0 014.9 0H16a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v1a1 1 0 102 0V8a1 1 0 00-1-1zm-7 1a1 1 0 10-2 0v1a1 1 0 102 0V8z"
-                ></path>
-              </svg>
-              <h3 class="font-semibold text-lg text-[#c23b49]">Services Premium</h3>
+          <!-- Service 3 -->
+          <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all hover-scale group">
+            <div
+              class=" bg-opacity-10 w-16 h-16 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:bg-opacity-20 transition-colors">
+              <i class="fas fa-umbrella-beach text-primary text-2xl group-hover:text-accent transition-colors"></i>
             </div>
-            <p class="text-gray-600">
-              Notre équipe propose des services complémentaires : traiteur,
-              décoration, animation musicale, transport privé et coordination
-              d'événements pour une expérience clé en main.
+            <h3 class="text-xl font-bold mb-4 text-primary">Tourisme</h3>
+            <p class="text-gray-600 mb-6">
+              Découvrez toute la richesse culturelle et naturelle du Bénin avec nos circuits touristiques personnalisés
+              et
+              nos guides expérimentés.
             </p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                <span>Circuits personnalisés</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                <span>Guides professionnels</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fas fa-check text-accent mt-1 mr-2"></i>
+                <span>Expériences authentiques</span>
+              </li>
+            </ul>
+            <a href="tourism.html"
+              class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors hover-underline">
+              Explorer nos circuits
+              <i class="fas fa-arrow-right ml-2"></i>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Footer Amélioré -->
-    <footer class="bg-primary text-white pt-12 pb-6">
+    <!-- Stats Section -->
+    <section class="py-16 bg-primary text-white">
       <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-          <!-- Logo et description -->
-          <div>
-            <img
-              src="./assets/img/LogoWNE.jpg"
-              alt="WA NIYON EVENT"
-              class="h-20 w-auto object-cover rounded-lg mb-4"
-            />
-            <p class="text-gray-300 mb-4">
-              Votre partenaire de confiance pour l'hébergement, les événements
-              et le tourisme au Bénin.
-            </p>
-            <div class="flex space-x-4">
-              <a href="#" class="text-gray-300 hover:text-accent"
-                ><i class="fab fa-facebook-f"></i
-              ></a>
-              <a href="#" class="text-gray-300 hover:text-accent"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="#" class="text-gray-300 hover:text-accent"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a href="#" class="text-gray-300 hover:text-accent"
-                ><i class="fab fa-linkedin-in"></i
-              ></a>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div class="p-6">
+            <div class="text-4xl md:text-5xl font-bold mb-2 animate-count" data-target="150">0</div>
+            <p class="text-accent font-medium">Clients satisfaits</p>
+          </div>
+          <div class="p-6">
+            <div class="text-4xl md:text-5xl font-bold mb-2 animate-count" data-target="50">0</div>
+            <p class="text-accent font-medium">Événements organisés</p>
+          </div>
+          <div class="p-6">
+            <div class="text-4xl md:text-5xl font-bold mb-2 animate-count" data-target="12">0</div>
+            <p class="text-accent font-medium">Guest Houses</p>
+          </div>
+          <div class="p-6">
+            <div class="text-4xl md:text-5xl font-bold mb-2 animate-count" data-target="8">0</div>
+            <p class="text-accent font-medium">Salles de fête</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <span class="text-secondary font-semibold mb-2 block">TÉMOIGNAGES</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+            Ce que disent nos clients
+          </h2>
+          <div class="w-24 h-1 bg-accent mx-auto mb-8"></div>
+          <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+            Découvrez les retours d'expérience de nos clients satisfaits.
+          </p>
+        </div>
+
+        <div class="swiper testimonial-swiper">
+          <div class="swiper-wrapper pb-12">
+            <!-- Testimonial 1 -->
+            <div class="swiper-slide">
+              <div class="bg-gray-50 p-8 rounded-xl shadow-md h-full">
+                <div class="flex items-center mb-4">
+                  <div class="text-accent text-2xl mr-2">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+                <p class="text-gray-700 italic mb-6">
+                  "Notre séjour dans la guest house était tout simplement parfait. L'accueil chaleureux, le cadre
+                  magnifique et les petits déjeuners délicieux ont rendu notre voyage inoubliable. Nous reviendrons
+                  certainement !"
+                </p>
+                <div class="flex items-center">
+                  <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sophie D."
+                    class="w-12 h-12 rounded-full object-cover mr-4" loading="lazy">
+                  <div>
+                    <h4 class="font-bold text-primary">Sophie D.</h4>
+                    <p class="text-sm text-gray-600">France</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="swiper-slide">
+              <div class="bg-gray-50 p-8 rounded-xl shadow-md h-full">
+                <div class="flex items-center mb-4">
+                  <div class="text-accent text-2xl mr-2">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+                <p class="text-gray-700 italic mb-6">
+                  "Nous avons organisé notre mariage avec WA NIYON EVENT et tout était parfait. La salle était
+                  magnifiquement décorée, la nourriture excellente et l'équipe très professionnelle. Nos invités étaient
+                  ravis !"
+                </p>
+                <div class="flex items-center">
+                  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Koffi A."
+                    class="w-12 h-12 rounded-full object-cover mr-4" loading="lazy">
+                  <div>
+                    <h4 class="font-bold text-primary">Koffi A.</h4>
+                    <p class="text-sm text-gray-600">Bénin</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="swiper-slide">
+              <div class="bg-gray-50 p-8 rounded-xl shadow-md h-full">
+                <div class="flex items-center mb-4">
+                  <div class="text-accent text-2xl mr-2">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+                <p class="text-gray-700 italic mb-6">
+                  "Le circuit touristique organisé par WA NIYON EVENT nous a permis de découvrir le Bénin comme jamais
+                  auparavant. Notre guide était incroyablement compétent et attentionné. Une expérience à recommander !"
+                </p>
+                <div class="flex items-center">
+                  <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Laura M."
+                    class="w-12 h-12 rounded-full object-cover mr-4" loading="lazy">
+                  <div>
+                    <h4 class="font-bold text-primary">Laura M.</h4>
+                    <p class="text-sm text-gray-600">Belgique</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="swiper-slide">
+              <div class="bg-gray-50 p-8 rounded-xl shadow-md h-full">
+                <div class="flex items-center mb-4">
+                  <div class="text-accent text-2xl mr-2">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                  </div>
+                </div>
+                <p class="text-gray-700 italic mb-6">
+                  "Nous avons réservé une salle pour notre conférence annuelle. L'espace était parfait, le matériel
+                  audiovisuel de qualité et le service impeccable. Nous prévoyons déjà de revenir l'année prochaine."
+                </p>
+                <div class="flex items-center">
+                  <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Jean-Paul K."
+                    class="w-12 h-12 rounded-full object-cover mr-4" loading="lazy">
+                  <div>
+                    <h4 class="font-bold text-primary">Jean-Paul K.</h4>
+                    <p class="text-sm text-gray-600">Côte d'Ivoire</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Liens rapides -->
-          <div>
-            <h3 class="text-xl font-bold mb-4 text-accent">Liens Rapides</h3>
-            <ul class="space-y-2">
-              <li>
-                <a href="index.html" class="text-gray-300 hover:text-white"
-                  >Accueil</a
-                >
-              </li>
-              <li>
-                <a
-                  href="guest-houses.html"
-                  class="text-gray-300 hover:text-white"
-                  >Guest Houses</a
-                >
-              </li>
-              <li>
-                <a
-                  href="event-halls.html"
-                  class="text-gray-300 hover:text-white"
-                  >Salles de Fête</a
-                >
-              </li>
-              <li>
-                <a href="tourism.html" class="text-gray-300 hover:text-white"
-                  >Tourisme</a
-                >
-              </li>
-              <li>
-                <a href="about.html" class="text-gray-300 hover:text-white"
-                  >À Propos</a
-                >
-              </li>
-              <li>
-                <a href="contact.html" class="text-gray-300 hover:text-white"
-                  >Contact</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Contact -->
-          <div>
-            <h3 class="text-xl font-bold mb-4 text-accent">Contact</h3>
-            <ul class="space-y-2">
-              <li class="flex items-start">
-                <i class="fas fa-map-marker-alt mt-1 mr-3 text-secondary"></i>
-                <span>123 Avenue de la République, Cotonou, Bénin</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-phone mr-3 text-secondary"></i>
-                <span>+229 12 34 56 78</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-envelope mr-3 text-secondary"></i>
-                <span>contact@waniyonevent.bj</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Newsletter -->
-          <div>
-            <h3 class="text-xl font-bold mb-4 text-accent">Newsletter</h3>
-            <p class="text-gray-300 mb-4">
-              Inscrivez-vous pour recevoir nos offres spéciales
-            </p>
-            <form class="flex flex-col space-y-2">
-              <input
-                type="email"
-                placeholder="Votre email"
-                class="px-4 py-2 rounded-lg text-gray-800 focus:outline-none"
-              />
-              <button
-                type="submit"
-                class="bg-secondary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition btn-hover"
-              >
-                S'inscrire
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Copyright -->
-        <div class="border-t border-gray-700 pt-6 text-center">
-          <p>© 2024 WA NIYON EVENT - Tous droits réservés</p>
+          <!-- Navigation -->
+          <div class="swiper-pagination"></div>
         </div>
       </div>
-    </footer>
+    </section>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Gallery Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <span class="text-secondary font-semibold mb-2 block">GALERIE</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+            Explorez nos espaces
+          </h2>
+          <div class="w-24 h-1 bg-accent mx-auto mb-8"></div>
+          <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+            Découvrez en images nos guest houses, salles de fête et destinations touristiques.
+          </p>
+        </div>
 
-    <script>
-      const menuToggle = document.getElementById("menu-toggle");
-      const mobileMenu = document.getElementById("mobile-menu");
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Image 1 -->
+          <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale transition-transform">
+            <img
+              src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              alt="Guest House" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300">
+            </div>
+            <div
+              class="absolute bottom-0 left-0 p-6 w-full transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+              <h3 class="text-white font-semibold text-xl mb-2">Guest House</h3>
+              <p class="text-gray-200 text-sm">Hébergement de luxe avec piscine</p>
+              <a href="guest-houses.html" class="inline-block mt-3 text-accent font-medium text-sm hover:underline">
+                Voir plus →
+              </a>
+            </div>
+          </div>
 
-      menuToggle.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-        menuToggle.innerHTML = mobileMenu.classList.contains("hidden")
-          ? '<i class="fas fa-bars text-2xl"></i>'
-          : '<i class="fas fa-times text-2xl"></i>';
-      });
-    </script>
+          <!-- Image 2 -->
+          <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale transition-transform">
+            <img
+              src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1798&q=80"
+              alt="Salle de fête"
+              class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300">
+            </div>
+            <div
+              class="absolute bottom-0 left-0 p-6 w-full transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+              <h3 class="text-white font-semibold text-xl mb-2">Salle de fête</h3>
+              <p class="text-gray-200 text-sm">Espace modulable pour événements</p>
+              <a href="event-halls.html" class="inline-block mt-3 text-accent font-medium text-sm hover:underline">
+                Voir plus →
+              </a>
+            </div>
+          </div>
 
-    <script>
-      // Initialisation Swiper
-      const heroSwiper = new Swiper(".hero-swiper", {
-        loop: true,
-        autoplay: {
-          delay: 5000,
+          <!-- Image 3 -->
+          <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale transition-transform">
+            <img
+              src="https://images.unsplash.com/photo-1581434681675-2578b9d70780?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              alt="Tourisme" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300">
+            </div>
+            <div
+              class="absolute bottom-0 left-0 p-6 w-full transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+              <h3 class="text-white font-semibold text-xl mb-2">Tourisme</h3>
+              <p class="text-gray-200 text-sm">Découvrez les merveilles du Bénin</p>
+              <a href="tourism.html" class="inline-block mt-3 text-accent font-medium text-sm hover:underline">
+                Voir plus →
+              </a>
+            </div>
+          </div>
+
+          <!-- Image 4 -->
+          <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale transition-transform">
+            <img
+              src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80"
+              alt="Piscine" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300">
+            </div>
+            <div
+              class="absolute bottom-0 left-0 p-6 w-full transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+              <h3 class="text-white font-semibold text-xl mb-2">Piscine</h3>
+              <p class="text-gray-200 text-sm">Détente dans nos espaces extérieurs</p>
+              <a href="guest-houses.html" class="inline-block mt-3 text-accent font-medium text-sm hover:underline">
+                Voir plus →
+              </a>
+            </div>
+          </div>
+
+          <!-- Image 5 -->
+          <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale transition-transform">
+            <img
+              src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              alt="Restaurant" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300">
+            </div>
+            <div
+              class="absolute bottom-0 left-0 p-6 w-full transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+              <h3 class="text-white font-semibold text-xl mb-2">Restaurant</h3>
+              <p class="text-gray-200 text-sm">Cuisine locale et internationale</p>
+              <a href="guest-houses.html" class="inline-block mt-3 text-accent font-medium text-sm hover:underline">
+                Voir plus →
+              </a>
+            </div>
+          </div>
+
+          <!-- Image 6 -->
+          <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale transition-transform">
+            <img
+              src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              alt="Séminaire" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy">
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300">
+            </div>
+            <div
+              class="absolute bottom-0 left-0 p-6 w-full transform translate-y-10 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+              <h3 class="text-white font-semibold text-xl mb-2">Séminaire</h3>
+              <p class="text-gray-200 text-sm">Espaces professionnels équipés</p>
+              <a href="event-halls.html" class="inline-block mt-3 text-accent font-medium text-sm hover:underline">
+                Voir plus →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="gallery.html"
+            class="inline-block bg-primary hover:bg-opacity-90 text-white font-medium py-3 px-8 rounded-lg transition-all hover-scale shadow-lg">
+            Voir toute la galerie
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 md:py-24 bg-primary text-white relative overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <img
+          src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+          alt="Background" class="w-full h-full object-cover" loading="lazy">
+      </div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            Prêt à vivre une expérience inoubliable au Bénin ?
+          </h2>
+          <p class="text-xl mb-8">
+            Réservez dès maintenant votre hébergement, votre salle d'événement ou votre circuit touristique.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="reservation.html"
+              class="bg-accent text-primary px-8 py-4 rounded-lg hover:bg-opacity-90 transition-all hover-scale font-bold text-center shadow-lg">
+              Faire une réservation
+            </a>
+            <a href="contact.html"
+              class="bg-white text-primary px-8 py-4 rounded-lg hover:bg-gray-100 transition-all hover-scale font-medium text-center shadow-lg">
+              Nous contacter
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <span class="text-secondary font-semibold mb-2 block">FAQ</span>
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+            Questions fréquentes
+          </h2>
+          <div class="w-24 h-1 bg-accent mx-auto mb-8"></div>
+          <p class="text-lg text-gray-700 max-w-2xl mx-auto">
+            Trouvez des réponses aux questions les plus courantes sur nos services.
+          </p>
+        </div>
+
+        <div class="max-w-3xl mx-auto">
+          <!-- FAQ Item 1 -->
+          <div class="mb-4 border-b border-gray-200 pb-4">
+            <button class="faq-toggle flex justify-between items-center w-full text-left focus:outline-none">
+              <h3 class="text-lg font-medium text-primary">
+                Quels sont les modes de paiement acceptés ?
+              </h3>
+              <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content mt-2 text-gray-700 hidden">
+              <p>
+                Nous acceptons les paiements par carte bancaire (Visa, Mastercard), virement bancaire, mobile money
+                (MTN,
+                Moov) et espèces. Un acompte de 30% est généralement requis pour confirmer une réservation.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="mb-4 border-b border-gray-200 pb-4">
+            <button class="faq-toggle flex justify-between items-center w-full text-left focus:outline-none">
+              <h3 class="text-lg font-medium text-primary">
+                Quelle est la politique d'annulation ?
+              </h3>
+              <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content mt-2 text-gray-700 hidden">
+              <p>
+                Pour les guest houses : annulation gratuite jusqu'à 7 jours avant la date d'arrivée. Pour les salles
+                d'événements : annulation possible jusqu'à 30 jours avant avec remboursement intégral, entre 30 et 15
+                jours avec retenue de 50%, moins de 15 jours pas de remboursement. Les circuits touristiques dépendent
+                des
+                prestataires.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="mb-4 border-b border-gray-200 pb-4">
+            <button class="faq-toggle flex justify-between items-center w-full text-left focus:outline-none">
+              <h3 class="text-lg font-medium text-primary">
+                Les guest houses sont-elles adaptées aux enfants ?
+              </h3>
+              <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content mt-2 text-gray-700 hidden">
+              <p>
+                Oui, la plupart de nos guest houses sont adaptées aux familles avec enfants. Certaines disposent même de
+                chambres familiales et d'espaces de jeux. Les piscines sont surveillées mais nous recommandons une
+                vigilance parentale constante.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="mb-4 border-b border-gray-200 pb-4">
+            <button class="faq-toggle flex justify-between items-center w-full text-left focus:outline-none">
+              <h3 class="text-lg font-medium text-primary">
+                Proposez-vous des services de traiteur pour les événements ?
+              </h3>
+              <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content mt-2 text-gray-700 hidden">
+              <p>
+                Oui, nous travaillons avec des traiteurs professionnels qui peuvent proposer des menus variés allant de
+                la
+                cuisine béninoise traditionnelle à des options internationales. Nous organisons des dégustations
+                préalables pour valider vos choix.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="mb-4 border-b border-gray-200 pb-4">
+            <button class="faq-toggle flex justify-between items-center w-full text-left focus:outline-none">
+              <h3 class="text-lg font-medium text-primary">
+                Les circuits touristiques sont-ils guidés en français ?
+              </h3>
+              <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+            </button>
+            <div class="faq-content mt-2 text-gray-700 hidden">
+              <p>
+                Oui, tous nos guides parlent couramment français. Certains parlent également anglais et langues locales.
+                Nous pouvons également organiser des circuits avec guides parlant d'autres langues sur demande
+                préalable.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <p class="text-gray-700 mb-4">
+            Vous ne trouvez pas la réponse à votre question ?
+          </p>
+          <a href="contact.html"
+            class="inline-block bg-secondary hover:bg-opacity-90 text-white font-medium py-3 px-8 rounded-lg transition-all hover-scale shadow-lg">
+            Contactez-nous
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8 md:p-12">
+          <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-4">
+              Abonnez-vous à notre newsletter
+            </h2>
+            <p class="text-gray-700">
+              Recevez nos offres spéciales, actualités et conseils pour votre séjour au Bénin.
+            </p>
+          </div>
+
+          <form class="max-w-md mx-auto">
+            <div class="flex flex-col sm:flex-row gap-4">
+              <input type="email" placeholder="Votre adresse email"
+                class="flex-grow px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                required>
+              <button type="submit"
+                class="bg-secondary hover:bg-opacity-90 text-white font-medium px-6 py-3 rounded-lg transition-all hover-scale">
+                S'abonner
+              </button>
+            </div>
+            <div class="mt-4 text-center text-sm text-gray-600">
+              <p>
+                Nous respectons votre vie privée. Vous pouvez vous désinscrire à tout moment.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- Footer -->
+  <footer class="bg-primary text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <!-- Column 1: About -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 text-accent">WA NIYON EVENT</h3>
+          <img src="./assets/img/LogoWNE.jpg" alt="WA NIYON EVENT Logo" class="h-16 w-auto object-contain mb-4"
+            loading="lazy">
+          <p class="text-gray-300 mb-4">
+            Votre partenaire de confiance pour l'hébergement, les événements et le tourisme au Bénin.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-300 hover:text-accent transition-colors text-xl" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-accent transition-colors text-xl" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-accent transition-colors text-xl" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-accent transition-colors text-xl" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 text-accent">Liens Rapides</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="index.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                Accueil
+              </a>
+            </li>
+            <li>
+              <a href="guest-houses.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                Guest Houses
+              </a>
+            </li>
+            <li>
+              <a href="event-halls.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                Salles de Fête
+              </a>
+            </li>
+            <li>
+              <a href="tourism.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                Tourisme
+              </a>
+            </li>
+            <li>
+              <a href="about.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                À Propos
+              </a>
+            </li>
+            <li>
+              <a href="contact.html" class="text-gray-300 hover:text-white transition-colors hover-underline">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Contact -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 text-accent">Contact</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt mt-1 mr-3 text-secondary"></i>
+              <span class="text-gray-300">123 Avenue de la République, Cotonou, Bénin</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone mr-3 text-secondary"></i>
+              <a href="tel:+22912345678" class="text-gray-300 hover:text-white transition-colors">
+                +229 12 34 56 78
+              </a>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope mr-3 text-secondary"></i>
+              <a href="mailto:contact@waniyonevent.bj" class="text-gray-300 hover:text-white transition-colors">
+                contact@waniyonevent.bj
+              </a>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-clock mr-3 text-secondary"></i>
+              <span class="text-gray-300">Lun-Sam : 8h-19h</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Newsletter -->
+        <div>
+          <h3 class="text-xl font-bold mb-4 text-accent">Newsletter</h3>
+          <p class="text-gray-300 mb-4">
+            Inscrivez-vous pour recevoir nos offres spéciales et actualités.
+          </p>
+          <form class="flex flex-col space-y-3">
+            <input type="email" placeholder="Votre email"
+              class="px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent" required>
+            <button type="submit"
+              class="bg-secondary text-white px-4 py-3 rounded-lg hover:bg-opacity-90 transition-all font-medium">
+              S'inscrire
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-gray-700 pt-8 text-center">
+        <p class="text-gray-400">
+          © 2024 WA NIYON EVENT - Tous droits réservés. |
+          <a href="#" class="hover:text-white transition-colors hover-underline">
+            Politique de confidentialité
+          </a> |
+          <a href="#" class="hover:text-white transition-colors hover-underline">
+            Conditions générales
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button type="button" id="back-to-top"
+    class="fixed bottom-8 right-8 bg-secondary text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 z-50"
+    aria-label="Retour en haut">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuToggle.addEventListener('click', () => {
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+      mobileMenu.classList.toggle('hidden');
+      menuToggle.innerHTML = mobileMenu.classList.contains('hidden')
+        ? '<i class="fas fa-bars text-2xl"></i>'
+        : '<i class="fas fa-times text-2xl"></i>';
+    });
+
+    // Initialize Hero Swiper
+    const heroSwiper = new Swiper('.hero-swiper', {
+      loop: true,
+      autoplay: {
+        delay: 7000,
+        disableOnInteraction: false,
+      },
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+
+    // Initialize Testimonial Swiper
+    const testimonialSwiper = new Swiper('.testimonial-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30,
         },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        effect: "fade",
-        fadeEffect: {
-          crossFade: true,
-        },
-      });
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        }
+      }
+    });
 
-      // Animation fade-up
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-up");
-          }
-        });
-      });
+    // FAQ Toggle
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('i');
 
-      document.querySelectorAll("section").forEach((section) => {
-        observer.observe(section);
+        content.classList.toggle('hidden');
+        icon.classList.toggle('transform');
+        icon.classList.toggle('rotate-180');
       });
-    </script>
-    <script src="script.js"></script>
-  </body>
+    });
+
+    // Back to Top Button
+    const backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.remove('opacity-100', 'visible');
+        backToTopButton.classList.add('opacity-0', 'invisible');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Animate on scroll
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.animate-fade-in');
+
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (elementPosition < windowHeight - 100) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+
+    // Set initial state for animated elements
+    document.querySelectorAll('.animate-fade-in').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+
+    window.addEventListener('load', animateOnScroll);
+    window.addEventListener('scroll', animateOnScroll);
+
+    // Counter animation
+    const animateCount = () => {
+      const counters = document.querySelectorAll('.animate-count');
+      const speed = 200;
+
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(animateCount, 1);
+        } else {
+          counter.innerText = target;
+        }
+      });
+    };
+
+    // Start counter when section is in view
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.animate-count').forEach(el => {
+      observer.observe(el.parentElement.parentElement);
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('shadow-lg', 'py-2');
+        navbar.classList.remove('py-3');
+      } else {
+        navbar.classList.remove('shadow-lg', 'py-2');
+        navbar.classList.add('py-3');
+      }
+    });
+  </script>
+</body>
+
 </html>
